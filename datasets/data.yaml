@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['Blocked drain', 'Stagnant water', 'Trash']
+
+roboflow:
+  workspace: techylimat
+  project: safehealth-ai-rvaex
+  version: 5
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/techylimat/safehealth-ai-rvaex/dataset/5
