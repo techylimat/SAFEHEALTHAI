@@ -29,7 +29,7 @@ The system is designed to provide immediate alerts upon detection of critical en
 
 ```bash
 git clone [https://github.com/YourUsername/SafeHealth-AI.git](https://github.com/YourUsername/SafeHealth-AI.git)
-cd SafeHealth-AI
+cd SafeHealth-AI ```
 
 ---
 
