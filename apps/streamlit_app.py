@@ -11,7 +11,7 @@ import requests  # NEW: Library for making HTTP requests to the webhook
 load_dotenv()  # Load environment variables including ALERT_WEBHOOK_URL
 
 # IMPORTANT: Update this path to your actual best model weights
-MODEL_PATH = 'C:/Users/USER/PycharmProjects/PythonProject1/runs/detect/safehealth_model4/weights/best.pt'
+MODEL_PATH = 'runs/detect/safehealth_model4/weights/best.pt'
 ALERT_WEBHOOK_URL = os.getenv("ALERT_WEBHOOK_URL")  # Get the secret URL
 
 st.set_page_config(
