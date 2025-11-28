@@ -1,92 +1,79 @@
- # 🛡️ SafeHealth AI – Real-Time Environmental Hazard Detection
+Markdown
 
-[![Project Status](https://img.shields.io/badge/Status-Hackathon_Prototype-brightgreen)](https://github.com/YourUsername/SafeHealth-AI)
+# 🛡️ SafeHealth AI – Real-Time Environmental Hazard Detection
+
+This project implements a **Real-Time Environmental Hazard Detection** system using a custom-trained **YOLOv8** model and **Zero-Code Automation** for instant municipal alerting.
+The system is designed to provide immediate alerts upon detection of critical environmental risks.
+
+[![Project Status](https://img.shields.io/badge/Status-Hackathon_Success-brightgreen)](https://github.com/YourUsername/SafeHealth-AI)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 [![Built with Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-red)](https://streamlit.io/)
 
-## Project Overview
+---
 
-**SafeHealth AI** is a rapid, deployable **Computer Vision system** that uses **Zero-Code Automation** to instantly report community health hazards, transforming slow, reactive municipal response into proactive health defense.
+## Project Overview 💡
 
-The system is designed to provide immediate alerts upon detection of critical environmental risks: **trash piles**, **stagnant water**, and **blocked drains**.
+SafeHealth AI transforms slow, reactive municipal response into **proactive health defense**. It leverages Computer Vision and webhooks to ensure swift action against hazards that lead to disease and infrastructural damage.
+
+The model is trained to detect specific hazards:
+
+- 🗑️ **Trash** (Risk of pollution, pests, and fire hazards)
+- 💧 **Stagnant water** (Potential breeding ground for mosquitoes/disease)
+- 🚧 **Blocked drain** (Risk of flooding and infrastructural damage)
 
 ---
 
-## Key Features & Technical Stack
+## Key Features & Technical Innovation 🚀
 
-| Category | Technology              | Feature | Impact |
-| :--- |:------------------------| :--- | :--- |
-| **Detection Core** | **Custom YOLOv8 Model** | Real-time Object Detection | High-accuracy identification of three key hazard classes. |
-| **User Interface** | **Streamlit**           | Interactive Web App | User-friendly platform for image upload and visual results. |
-| **Data Reporting** | **Pandas**              | Structured Data Summary | Generates a clean table (Confidence, Coordinates) for reporting. |
-| **Automation Edge** | **Webhooks + Zapier**   | Zero-Code Alert System | Instant, automated hazard reporting via HTTP POST request, bypassing complex email server setup. |
+| Feature | Technology | Innovation Focus |
+| :--- | :--- | :--- |
+| **Detection Core** | **Custom YOLOv8 Model** | High-accuracy identification on a unique dataset of hazards. |
+| **Alert Automation** | **Webhooks + Zapier/IFTTT** | Instant, zero-code alerting, eliminating complex email server management. |
+| **Data Reporting** | **Pandas & Tabulate** | Generates a clean, structured markdown table for official reports. |
+| **Deployment** | **Streamlit Cloud** | Lightweight, easy-to-use web interface for field workers. |
 
 ---
 
-## Get Started
+## Tech Stack & Dependencies 🛠️
 
-### 1. **Clone the Repository**
+- **Language:** Python
+- **Frameworks:** **PyTorch**, **Streamlit**
+- **Computer Vision:** YOLOv8, OpenCV
+- **Libraries:** Pandas, NumPy, python-dotenv, requests
+- **Cloud Setup:** **`packages.txt`** (for Linux system dependencies like `libgl1`)
 
+---
+
+## How to Run Locally 
+
+To set up and launch the application in your local environment:
+
+### **1. Get the Code**
 ```bash
-git clone [https://github.com/YourUsername/SafeHealth-AI.git](https://github.com/YourUsername/SafeHealth-AI.git)
-cd SafeHealth-AI ```
-
----
-
-### 2. Environment Setup
-Ensure you have a Python virtual environment activated.
-
-Bash
-
-# Activate your environment (e.g., source .venv/bin/activate)
-# ...
-
-### 3. Install Dependencies
-Install all required libraries, including ultralytics, streamlit, pandas, requests, and python-dotenv.
+git clone [https://github.com/techylimat/SafeHealth-AI.git](https://github.com/techylimat/SafeHealth-AI.git)
+cd SafeHealth-AI
+2. Prepare Environment
+Install dependencies:
 
 Bash
 
 pip install -r requirements.txt
-# Ensure you also manually install the dependency for data formatting:
 pip install tabulate
+Crucial Step: Ensure your model weights (best.pt) are in the root directory and managed by Git LFS if the file size exceeds 100MB.
 
-### 4. Model Weights & Configuration
-Place your trained model weights (best.pt) in the location specified by MODEL_PATH in streamlit_app.py.
+3. Configure Secrets
+Create a file named .env in the project root to store your automation URL:
 
-Create a file named .env in the project root to securely store your automation URL:
-
-# .env file content (DO NOT COMMIT THIS FILE TO GIT)
+# .env file content
 ALERT_WEBHOOK_URL="[YOUR_SECRET_ZAPIER_OR_IFTTT_URL_HERE]"
-💻 How to Run the Application
-With your environment activated and dependencies installed, launch the Streamlit app:
-
+4. Launch App
 Bash
 
 streamlit run apps/streamlit_app.py
-The app will open automatically in your browser at http://localhost:8501.
+Deployment Notes (Streamlit Cloud) ☁️
+This project requires two critical configuration files for a successful cloud deployment:
 
-🚨 Automation Workflow
-The system is configured to trigger an automated alert when a hazard is detected:
+packages.txt: This file is mandatory and must contain the system libraries needed for OpenCV to load correctly:
 
-User uploads image and clicks "Start Hazard Analysis."
-
-Python's requests library sends a JSON payload containing the Detection Summary Table (generated by Pandas) to the ALERT_WEBHOOK_URL.
-
-The Webhook (e.g., on Zapier) catches the data and triggers an Action (e.g., sending a formatted email to the municipal response team).
-
-This process reduces the hazard reporting time from days to mere seconds.
-
-Hazard Classes
-The model is trained to detect the following classes:
-
-Trash (Risk of pollution, pests, and fire hazards)
-
-Stagnant water (Potential breeding ground for mosquitoes/disease)
-
-Blocked drain (Risk of flooding and infrastructural damage)
-
-🤝 Contributing
-We welcome feedback and future collaborations to expand the model's capabilities and integrate with municipal APIs.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+libgl1
+Secrets: The ALERT_WEBHOOK_URL must be added manually to the Streamlit Cloud's Secrets panel (or in .streamlit/secrets.toml) for the application to function in the cloud.
